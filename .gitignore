@@ -1,3 +1,10 @@
 build/
 /tags
 /bazel-*
+
+
+# build and intermediate
+bin
+bin-int
+
+*.vcxproj
