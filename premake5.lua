@@ -1,9 +1,12 @@
 project "yaml-cpp"
 	kind "StaticLib"
 	language "C++"
+	configmap {
+        ["ReleaseNoImGui"] = "Release"
+    }
 
-	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputDir .. "/%{prj.name}")
+	targetdir ("%{wks.location}/bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("%{wks.location}/bin-int/" .. outputDir .. "/%{prj.name}")
 
 	files
 	{
@@ -22,8 +25,8 @@ project "yaml-cpp"
 
 	filter "system:windows"
 		systemversion "latest"
+		staticruntime "on"
 		cppdialect "C++17"
-		staticruntime "On"
 
 	filter "system:linux"
 		pic "On"
@@ -35,9 +38,5 @@ project "yaml-cpp"
 		symbols "On"
 	
 	filter "configurations:Release"
-		runtime "Release"
-		optimize "On"
-
-	filter "configurations:MinSizeRelease"
 		runtime "Release"
 		optimize "On"
